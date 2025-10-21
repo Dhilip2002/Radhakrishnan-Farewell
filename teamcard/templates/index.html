@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farewell Card Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background: #f7f7f7; 
+            text-align: center; 
+            padding: 20px; 
+        }
+        form { 
+            background: #fff; 
+            padding: 40px 50px; 
+            border-radius: 10px; 
+            display: inline-block; 
+            box-shadow: 0 0 10px #ccc; 
+            min-width: 500px;
+        }
+        input, textarea { 
+            width: 100%; 
+            margin: 10px 0; 
+            padding: 12px; 
+            border-radius: 5px; 
+            border: 1px solid #aaa; 
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+        }
+        textarea {
+            resize: none;
+            overflow-y: auto; /* ✅ Vertical scrollbar when needed */
+            overflow-x: hidden;
+            max-height: 150px; /* ✅ Prevents textarea from expanding too much */
+        }
+        button { 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover { 
+            background: #45a049; 
+        }
+        .card-list { 
+            margin-top: 30px; 
+        }
+        .card-item { 
+        background: white; 
+        margin: 10px auto; 
+        width: auto; /* ✅ Allows flexible resizing */
+        min-width: 320px; /* ✅ Slightly wider default */
+        max-width: 600px; /* ✅ Prevents it from being too wide */
+        padding: 12px 16px; 
+        border-radius: 8px; 
+        box-shadow: 0 0 5px #bbb; 
+        word-wrap: break-word; /* ✅ Wrap long text */
+        white-space: normal;
+        display: inline-block;
+        }
+        a { 
+            color: #333; 
+            text-decoration: none; 
+            word-break: break-word; /* ✅ Prevents overflow for long names */
+        }
+        /* .card-item { 
+            background: white; 
+            margin: 10px auto; 
+            width: 300px; 
+            padding: 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 5px #bbb; 
+        }
+        a { 
+            color: #333; 
+            text-decoration: none; 
+        } */
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Farewell Card</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea><br>
+        <button type="submit">Generate Card</button>
+    </form>
+
+    {% if error %}
+    <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    <div class="card-list">
+        <h2>Generated Cards</h2>
+        {% for card in cards %}
+            <div class="card-item">
+                <a href="{{ url_for('get_card', filename=card) }}" target="_blank">{{ card }}</a>
+            </div>
+        {% else %}
+            <p>No cards yet.</p>
+        {% endfor %}
+    </div>
+
+    <p><a href="{{ url_for('admin') }}">Admin Panel</a></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Farewell Card Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Manrope', sans-serif; background: #f7f7f7; text-align: center; padding: 20px; }
+        form { background: #fff; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px #ccc; }
+        input, textarea { width: 90%; margin: 10px; padding: 10px; border-radius: 5px; border: 1px solid #aaa; }
+        button { background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #45a049; }
+        .card-list { margin-top: 30px; }
+        .card-item { background: white; margin: 10px auto; width: 300px; padding: 10px; border-radius: 8px; box-shadow: 0 0 5px #bbb; }
+        a { color: #333; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Team Farewell Card</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea><br>
+        <button type="submit">Generate Card</button>
+    </form>
+
+    {% if error %}
+    <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    <div class="card-list">
+        <h2>Generated Cards</h2>
+        {% for card in cards %}
+            <div class="card-item">
+                <a href="{{ url_for('get_card', filename=card) }}" target="_blank">{{ card }}</a>
+            </div>
+        {% else %}
+            <p>No cards yet.</p>
+        {% endfor %}
+    </div>
+
+    <p><a href="{{ url_for('admin') }}">Admin Panel</a></p>
+</body>
+</html> -->

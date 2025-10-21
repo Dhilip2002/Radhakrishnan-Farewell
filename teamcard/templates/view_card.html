@@ -1,0 +1,19 @@
+<!doctype html>
+<title>Card – {{ recipient }}</title>
+<h1>Digital card for {{ recipient }}</h1>
+<h2>All individual PDFs</h2>
+<ul>
+  {% for f in files %}
+    <li>
+      <a href="{{ url_for('serve_pdf', filename=f) }}" target="_blank">{{ f }}</a>
+    </li>
+  {% endfor %}
+</ul>
+<hr>
+<h2>Messages</h2>
+<ul>
+  {% for name, msg in msgs.items() %}
+    <li><strong>{{ name }}:</strong> {{ msg }}</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('card_page', recipient=recipient) }}">Back to form</a>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Message – {{ recipient }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 600px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 8px 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: inherit;
+      resize: none;
+      overflow: auto;
+      box-sizing: border-box;
+      scrollbar-width: none;
+    }
+
+    textarea::-webkit-scrollbar {
+      display: none;
+    }
+
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px;
+      transition: background 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    hr {
+      margin: 40px 0 20px;
+      border: 0;
+      height: 1px;
+      background: #ddd;
+      width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 600px;
+    }
+
+    li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign the card for {{ recipient }}!</h1>
+  <form action="{{ url_for('add_message', recipient=recipient) }}" method="post">
+    <label for="name">Your name:</label>
+    <input id="name" name="name" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+    <button type="submit">Add my message</button>
+  </form>
+
+  <hr>
+
+  <h2>Messages so far</h2>
+  <ul>
+    {% for name, msg in msgs.items() %}
+      <li><strong>{{ name }}:</strong> {{ msg }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ url_for('view_card', recipient=recipient) }}">View / download PDFs</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!doctype html>
+<title>Add Message – {{ recipient }}</title>
+<h1>Sign the card for {{ recipient }}!</h1>
+<form action="{{ url_for('add_message', recipient=recipient) }}" method="post">
+  Your name: <input name="name" required><br>
+  Message:<br>
+  <textarea name="message" rows="4" cols="50" required></textarea><br>
+  <button type="submit">Add my message</button>
+</form>
+<hr>
+<h2>Messages so far</h2>
+<ul>
+  {% for name, msg in msgs.items() %}
+    <li><strong>{{ name }}:</strong> {{ msg }}</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('view_card', recipient=recipient) }}">View / download PDFs</a> -->
