@@ -131,7 +131,7 @@ def index():
                 name_y = 200  # Fallback if no message lines drawn
 
             name_text = f"- {name}"
-            c.setFont("Helvetica-Bold", 14)
+            c.setFont("Helvetica-Bold", 12)
             name_width = c.stringWidth(name_text, "Helvetica-Bold", 14)
             name_x = message_right - name_width - 10
             c.drawString(name_x, name_y, name_text)
